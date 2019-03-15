@@ -29,7 +29,7 @@ public class DevMain {
         metadata.put("key1", "value1");
         metadata.put("key2", "value2");
         metadata.put("key3", "value3");
-        List<MessengerServicePrincipal> principal = pService.getMessengerServicePrincipalsByPlatformId("12345-xxvcb");
+        List<MessengerServicePrincipal> principal = pService.getPrincipals("12345-xxvcb");
         System.out.println("principal created is " + principal);
     }
 }

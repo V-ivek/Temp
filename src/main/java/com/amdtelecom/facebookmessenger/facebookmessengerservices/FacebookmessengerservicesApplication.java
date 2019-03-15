@@ -3,7 +3,7 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.amdtelecom.facebookmessenger.facebookmessengerservices")
 public class FacebookmessengerservicesApplication {
 
 	public static void main(String[] args) {
