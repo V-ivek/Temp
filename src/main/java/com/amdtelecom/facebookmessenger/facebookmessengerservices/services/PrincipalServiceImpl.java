@@ -32,7 +32,8 @@ public class PrincipalServiceImpl implements PrincipalService {
         MessengerServicePrincipal principal = principalRepository.getMessengerServicePrincipalByPrincipalId(platformId,principalId);
         if(principal == null){
             throw new InvalidPrincipalException("PrincipalId corresponding to given platformId does not exist");
-        } else {
+        }
+        else {
             return principal;
         }
 
