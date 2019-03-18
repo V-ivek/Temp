@@ -67,16 +67,4 @@ public class MessengerServiceChannel {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    @Override
-    public String toString() {
-        return "MessengerServiceChannel{" +
-                "channelName='" + channelName + '\'' +
-                ", channelId='" + channelId + '\'' +
-                ", facebookCredentials=" + facebookCredentials +
-                ", facebookPsids=" + facebookPsids +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
-    }
 }

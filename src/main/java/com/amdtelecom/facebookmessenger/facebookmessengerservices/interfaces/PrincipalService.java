@@ -1,5 +1,6 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces;
 
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.exceptions.InvalidPrincipalException;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
 
 import java.util.List;
@@ -9,5 +10,5 @@ import java.util.Map;
 public interface PrincipalService {
     MessengerServicePrincipal createPrincipal(String platformId, Map<String, String> metadata);
     List<MessengerServicePrincipal> getPrincipals(String platformId);
-    MessengerServicePrincipal getSpecificPrincipal(String principalId);
+    MessengerServicePrincipal getSpecificPrincipal(String principalId,String platformId) throws InvalidPrincipalException;
 }

@@ -1,5 +1,6 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.services;
 
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.exceptions.InvalidPrincipalException;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.PrincipalService;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
@@ -7,8 +8,6 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.P
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.*;
 
@@ -29,8 +28,13 @@ public class PrincipalServiceImpl implements PrincipalService {
         principals = principalRepository.getMessengerServicePrincipalsByPlatformId(platformId);
         return principals;
     }
-    public MessengerServicePrincipal getSpecificPrincipal(String principalId){
-        MessengerServicePrincipal principal = principalRepository.getMessengerServicePrincipalByPrincipalId(principalId);
-        return principal;
+    public MessengerServicePrincipal getSpecificPrincipal(String principalId,String platformId) throws InvalidPrincipalException {
+        MessengerServicePrincipal principal = principalRepository.getMessengerServicePrincipalByPrincipalId(platformId,principalId);
+        if(principal == null){
+            throw new InvalidPrincipalException("PrincipalId corresponding to given platformId does not exist");
+        } else {
+            return principal;
+        }
+
     }
 }
