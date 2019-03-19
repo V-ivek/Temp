@@ -1,6 +1,8 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.services;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.ChannelRepository;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
@@ -17,21 +19,18 @@ public class ChannelServiceImpl implements ChannelService {
     ChannelRepository channelRepository;
 
     @Override
-    public MessengerServiceChannel createChannel(String channelName, Map<String,String> credentials,String principalId) {
+    public ChannelResponse createChannel(Channel channel, String principalId) {
         String channelId = Utility.generateUuid();
-        MessengerServiceChannel channel = new MessengerServiceChannel(channelId,channelName,
-                credentials.get("appId"),credentials.get("appSecret"),
-                credentials.get("pageId"),credentials.get("pageAccessToken"),
-                credentials.get("verifyToken"),credentials.get("callbackStatusUrl"),
-                credentials.get("callbackInboundUrl"),principalId,new Date(),new Date());
-        System.out.println("Reached here2" + channel);
-        channelRepository.save(channel);
-        return channel;
+        MessengerServiceChannel messengerServiceChannel = new MessengerServiceChannel(channel.getChannelName(),channel.getCredentials(),channelId,principalId,new Date(),new Date(),false);
+        MessengerServiceChannel channelResponse = channelRepository.save(messengerServiceChannel);
+        ChannelResponse response = new ChannelResponse(channelResponse.getChannelName(),channelResponse.getCredentials(),messengerServiceChannel.getChannelId());
+        return response;
     }
 
     @Override
-    public List<MessengerServiceChannel> getAllChannelsOfPrincipal(String principalId) {
+    public List<Channel> getAllChannelsOfPrincipal(String principalId) {
         List<MessengerServiceChannel> channels = channelRepository.getMessengerServiceChannelsByPrincipalId(principalId);
-        return channels;
+//        List<Channel> response = channels;
+        return null;
     }
 }

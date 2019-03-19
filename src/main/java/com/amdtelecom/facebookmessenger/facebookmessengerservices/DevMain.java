@@ -39,8 +39,8 @@ public class DevMain {
         System.out.println("Reached here1" + credentials);
 //        MessengerServiceChannel channel = channelService.createChannel("testChannel",credentials,"aa8fb3fc-c9e0-48cd-bc22-58a5f6bc3403");
 //        System.out.println("Channel created is " + channel);
-        List<MessengerServiceChannel> channels = channelService.getAllChannelsOfPrincipal("aa8fb3fc-c9e0-48cd-bc22-58a5f6bc3403");
-        System.out.println("Channels are " + channels.size());
+//        List<MessengerServiceChannel> channels = channelService.getAllChannelsOfPrincipal("aa8fb3fc-c9e0-48cd-bc22-58a5f6bc3403");
+//        System.out.println("Channels are " + channels.size());
     }
     @Autowired
     PrincipalService principalService;
