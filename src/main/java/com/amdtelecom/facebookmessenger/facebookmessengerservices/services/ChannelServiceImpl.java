@@ -2,10 +2,7 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices.services;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL.ChannelDAL;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.ChannelRepository;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,5 +45,10 @@ public class ChannelServiceImpl implements ChannelService {
 //        channelRepository.deleteById(channelId);
         channelDAL.delete(channelId,principalId);
         System.out.println("This is");
+    }
+
+    @Override
+    public ChannelResponse updateChannel(String channelId,String principalId, Credentials credentials) {
+        return null;
     }
 }

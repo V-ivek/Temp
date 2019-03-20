@@ -3,6 +3,8 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL.ChannelDAL;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
+//import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.CredentialsBase;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -34,6 +36,13 @@ public class ChannelDALImpl implements ChannelDAL {
         Update update = new Update().set("isDeleted",true);
         Object obj = mongoTemplate.findAndModify(query,update,MessengerServiceChannel.class);
         System.out.println(obj);
+    }
+
+    @Override
+    public ChannelResponse update(String channelId, Credentials credentials) {
+        Query query = new Query();
+//        query.addCriteria(Criteria.where("channelId").is(cha));
+        return null;
     }
 
 }

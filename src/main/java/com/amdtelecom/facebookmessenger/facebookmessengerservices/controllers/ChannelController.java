@@ -45,6 +45,13 @@ public class ChannelController {
         response.put("message","The channel with channel Id channelId is deleted successfully");
         return new ResponseEntity(response.toString(), HttpStatus.OK);
     }
+    @PutMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
+    public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Credentials credentials) {
+        System.out.println(credentials);
+        return null;
+    } {
+
+    }
 //    @PutMapping(value = "facebook/channel/{channelId}" , produces = "application/json")
 //    public ResponseEntity updateChannel()
 }
