@@ -10,5 +10,9 @@ import java.util.Map;
 public interface ChannelService {
     ChannelResponse createChannel(Channel channel, String principalId);
 
-    List<Channel> getAllChannelsOfPrincipal(String principalId);
+    List<ChannelResponse> getAllChannelsOfPrincipal(String principalId);
+
+    ChannelResponse getChannel(String principalId,String channelId);
+
+    void deleteChannel(String principalId,String channelId);
 }

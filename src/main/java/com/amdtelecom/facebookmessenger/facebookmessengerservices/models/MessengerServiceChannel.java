@@ -11,16 +11,18 @@ import java.util.List;
 
 public class MessengerServiceChannel extends Channel {
     @Indexed(unique  = true)
-    private String channelId;
+    private  String channelId;
     private String principalId;
     private Date createdAt;
     private Date updatedAt;
     private boolean isDeleted;
 
 
-    public MessengerServiceChannel(String channelName, Credentials credentials) {
-        super(channelName, credentials);
-    }
+    public MessengerServiceChannel(){ }
+
+//    public MessengerServiceChannel(String channelName, Credentials credentials) {
+//        super(channelName, credentials);
+//    }
 
     public MessengerServiceChannel(String channelName, Credentials credentials, String channelId, String principalId, Date createdAt, Date updatedAt, boolean isDeleted) {
         super(channelName, credentials);
@@ -72,5 +74,13 @@ public class MessengerServiceChannel extends Channel {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    public boolean isDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        isDeleted = deleted;
     }
 }

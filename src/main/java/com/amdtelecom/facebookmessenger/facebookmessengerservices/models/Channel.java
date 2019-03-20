@@ -11,6 +11,7 @@ public class Channel {
         this.channelName = channelName;
         this.credentials = credentials;
     }
+    public Channel(){  }
 
     @Override
     public String toString() {

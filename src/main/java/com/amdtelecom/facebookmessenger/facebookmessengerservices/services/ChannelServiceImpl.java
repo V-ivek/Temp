@@ -1,12 +1,15 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.services;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL.ChannelDAL;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.ChannelRepository;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -17,6 +20,8 @@ import java.util.Map;
 public class ChannelServiceImpl implements ChannelService {
     @Autowired
     ChannelRepository channelRepository;
+    @Autowired
+    ChannelDAL channelDAL;
 
     @Override
     public ChannelResponse createChannel(Channel channel, String principalId) {
@@ -28,9 +33,20 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public List<Channel> getAllChannelsOfPrincipal(String principalId) {
-        List<MessengerServiceChannel> channels = channelRepository.getMessengerServiceChannelsByPrincipalId(principalId);
-//        List<Channel> response = channels;
-        return null;
+    public List<ChannelResponse> getAllChannelsOfPrincipal(String principalId) {
+        List<ChannelResponse> channels = channelDAL.getAllFacebookChannelsOfPrincipal(principalId);
+        return channels;
+    }
+    @Override
+    public ChannelResponse getChannel(String principalId,String channelId) {
+        ChannelResponse channel = channelRepository.getMessengerServiceChannelByPrincipalIdAndChannelId(principalId,channelId);
+        return channel;
+    }
+    @Override
+    public void deleteChannel(String principalId,String channelId){
+        System.out.println("This is" + channelId);
+//        channelRepository.deleteById(channelId);
+        channelDAL.delete(channelId,principalId);
+        System.out.println("This is");
     }
 }
