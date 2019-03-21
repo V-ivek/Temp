@@ -19,8 +19,7 @@ public class PrincipalServiceImpl implements PrincipalService {
     public MessengerServicePrincipal createPrincipal(String platformId, Map<String, String> metadata) {
         String principalId = Utility.generateUuid();
         MessengerServicePrincipal principal = new MessengerServicePrincipal(principalId, platformId, metadata,new Date(), new Date());
-        principalRepository.save(principal);
-        return principal;
+            return principalRepository.save(principal);
     }
 
     public List<MessengerServicePrincipal> getPrincipals(String platformId){

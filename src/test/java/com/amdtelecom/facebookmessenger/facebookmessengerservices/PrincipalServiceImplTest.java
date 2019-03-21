@@ -12,6 +12,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.when;
@@ -34,6 +37,7 @@ public class PrincipalServiceImplTest {
         when(principalRepository.save(mockPrincipal)).thenReturn(mockPrincipal);
         assertEquals(null, principalServiceImpl.createPrincipal("platform-id-1", metadata));
     }
+
     @Test
     public void testGetPrincipalDetails() throws InvalidPrincipalException {
         String mockPlatformId = "mock-platform-id-123-5678";
