@@ -4,6 +4,7 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 import java.util.Map;
@@ -11,7 +12,7 @@ import java.util.Map;
 public interface ChannelService {
     ChannelResponse createChannel(Channel channel, String principalId);
 
-    List<ChannelResponse> getAllChannelsOfPrincipal(String principalId);
+    Page<ChannelResponse> getAllChannelsOfPrincipal(String principalId);
 
     ChannelResponse getChannel(String principalId,String channelId);
 

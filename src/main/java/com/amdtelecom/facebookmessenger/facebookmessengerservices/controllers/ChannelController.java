@@ -8,6 +8,7 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Messeng
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +27,8 @@ public class ChannelController {
         return channelResponse;
     }
     @GetMapping(value = "/facebook/channel", produces = "application/json")
-    public List<ChannelResponse> getAllChannelsOfPrincipal(@RequestHeader("principalId") String principalId) {
-        List<ChannelResponse> channels = channelService.getAllChannelsOfPrincipal(principalId);
+    public Page<ChannelResponse> getAllChannelsOfPrincipal(@RequestHeader("principalId") String principalId) {
+        Page<ChannelResponse> channels = channelService.getAllChannelsOfPrincipal(principalId);
         System.out.println("This is---" + channels );
         return channels;
     }

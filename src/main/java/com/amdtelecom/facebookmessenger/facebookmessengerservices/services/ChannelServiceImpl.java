@@ -6,6 +6,7 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.ChannelRepository;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -30,8 +31,8 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public List<ChannelResponse> getAllChannelsOfPrincipal(String principalId) {
-        List<ChannelResponse> channels = channelDAL.getAllFacebookChannelsOfPrincipal(principalId);
+    public Page<ChannelResponse> getAllChannelsOfPrincipal(String principalId) {
+        Page<ChannelResponse> channels = channelDAL.getAllFacebookChannelsOfPrincipal(principalId);
         return channels;
     }
     @Override
