@@ -54,8 +54,8 @@ public class ChannelServiceImpl implements ChannelService {
         }
     }
     @Override
-    public ChannelResponse updateChannel(String channelId,String principalId, Credentials credentials) {
-        if(channelDAL.update(channelId,principalId,credentials)) {
+    public ChannelResponse updateChannel(String channelId,String principalId, Channel channel) {
+        if(channelDAL.update(channelId,principalId,channel)) {
             ChannelResponse channelResponse = channelRepository.getMessengerServiceChannelByPrincipalIdAndChannelId(principalId,channelId);
             return channelResponse;
         }

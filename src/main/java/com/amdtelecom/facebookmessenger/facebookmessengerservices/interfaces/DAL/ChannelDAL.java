@@ -1,5 +1,6 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL;
 
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
@@ -14,5 +15,5 @@ public interface ChannelDAL {
 
     void delete(String channelId, String principalId);
 
-    boolean update(String channelId, String principalId, Credentials credentials);
+    boolean update(String channelId, String principalId, Channel channel);
 }

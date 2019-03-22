@@ -1,6 +1,7 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.DAL;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL.ChannelDAL;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
 //import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.CredentialsBase;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
@@ -50,20 +51,23 @@ public class ChannelDALImpl implements ChannelDAL {
     }
 
     @Override
-    public boolean update(String channelId,String principalId, Credentials credentials) {
+    public boolean update(String channelId,String principalId, Channel channel) {
         Query query = new Query();
         Update update = new Update();
-        if(credentials.getPageAccessToken() !=null) {
-            update.set("credentials.pageAccessToken", credentials.getPageAccessToken());
+        if(channel.getChannelName() != null) {
+            update.set("channelName", channel.getChannelName());
         }
-        if(credentials.getVerifyToken() !=null) {
-            update.set("credentials.verifyToken", credentials.getVerifyToken());
+        if(channel.getCredentials().getPageAccessToken() !=null) {
+            update.set("credentials.pageAccessToken", channel.getCredentials().getPageAccessToken());
         }
-        if(credentials.getCallbackStatusUrl() !=null) {
-            update.set("credentials.callbackStatusUrl", credentials.getCallbackStatusUrl());
+        if(channel.getCredentials().getVerifyToken() !=null) {
+            update.set("credentials.verifyToken", channel.getCredentials().getVerifyToken());
         }
-        if(credentials.getCallbackInboundUrl() !=null) {
-            update.set("credentials.callbackInboundUrl", credentials.getCallbackInboundUrl());
+        if(channel.getCredentials().getCallbackStatusUrl() !=null) {
+            update.set("credentials.callbackStatusUrl", channel.getCredentials().getCallbackStatusUrl());
+        }
+        if(channel.getCredentials().getCallbackInboundUrl() !=null) {
+            update.set("credentials.callbackInboundUrl", channel.getCredentials().getCallbackInboundUrl());
         }
         update.set("updatedAt",new Date());
         query.addCriteria(Criteria.where("channelId").is(channelId));

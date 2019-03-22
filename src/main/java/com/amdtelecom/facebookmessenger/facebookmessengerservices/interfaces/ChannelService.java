@@ -15,7 +15,7 @@ public interface ChannelService {
 
     boolean deleteChannel(String principalId,String channelId);
 
-    ChannelResponse updateChannel(String channelId, String principalId,Credentials credentials);
+    ChannelResponse updateChannel(String channelId, String principalId,Channel channel);
 
     Recipient putUser(String channelId, String principalId, String facebookPsid);
 }

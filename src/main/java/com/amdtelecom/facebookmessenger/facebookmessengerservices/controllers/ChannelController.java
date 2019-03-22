@@ -36,20 +36,20 @@ public class ChannelController {
     @DeleteMapping(value = "facebook/channel/{channelId}", produces = "application/json")
     public ResponseEntity deleteChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId) {
         boolean resp = channelService.deleteChannel(principalId,channelId);
+        JSONObject response = new JSONObject();
         if(resp) {
-            JSONObject response = new JSONObject();
             response.put("status","success");
             response.put("message","The channel with channel Id channelId is deleted successfully");
             return new ResponseEntity(response.toString(), HttpStatus.OK);
         }
-        JSONObject response = new JSONObject();
         response.put("error","Invalid combination of principalId and channelId");
         return new ResponseEntity(response.toString(),HttpStatus.BAD_REQUEST);
 
     }
-    @PostMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
-    public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Credentials credentials) {
-        ChannelResponse channelResponse = channelService.updateChannel(channelId,principalId,credentials);
+    @PutMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
+    public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Channel channel) {
+
+        ChannelResponse channelResponse = channelService.updateChannel(channelId,principalId,channel);
         return channelResponse;
     }
     @PostMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
