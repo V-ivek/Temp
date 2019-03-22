@@ -13,7 +13,7 @@ public interface ChannelService {
 
     ChannelResponse getChannel(String principalId,String channelId);
 
-    void deleteChannel(String principalId,String channelId);
+    boolean deleteChannel(String principalId,String channelId);
 
     ChannelResponse updateChannel(String channelId, String principalId,Credentials credentials);
 

@@ -44,10 +44,15 @@ public class ChannelServiceImpl implements ChannelService {
         return channel;
     }
     @Override
-    public void deleteChannel(String principalId,String channelId){
-        channelRepository.deleteMessengerServiceChannelByChannelIdAndPrincipalId(channelId,principalId);
+    public boolean deleteChannel(String principalId,String channelId){
+        if(validateChannelAndPrincipal(principalId,channelId)) {
+            channelRepository.deleteMessengerServiceChannelByChannelIdAndPrincipalId(channelId,principalId);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-
     @Override
     public ChannelResponse updateChannel(String channelId,String principalId, Credentials credentials) {
         if(channelDAL.update(channelId,principalId,credentials)) {
@@ -63,5 +68,11 @@ public class ChannelServiceImpl implements ChannelService {
         Recipient response = recipientRepository.save(recipient);
         return response;
 
+    }
+    public boolean validateChannelAndPrincipal(String principalId,String channelId) {
+        if(channelRepository.getMessengerServiceChannelByPrincipalIdAndChannelId(principalId,channelId) != null) {
+            return true;
+        }
+        return false;
     }
 }

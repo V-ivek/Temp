@@ -26,27 +26,30 @@ public class ChannelController {
     @GetMapping(value = "/facebook/channel", produces = "application/json")
     public List<ChannelResponse> getAllChannelsOfPrincipal(@RequestHeader("principalId") String principalId) {
         List<ChannelResponse> channels = channelService.getAllChannelsOfPrincipal(principalId);
-        System.out.println("This is---" + channels );
         return channels;
     }
     @GetMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
     public ChannelResponse getFacebookChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId){
         ChannelResponse channel = channelService.getChannel(principalId,channelId);
-        System.out.println(channel);
         return channel;
     }
     @DeleteMapping(value = "facebook/channel/{channelId}", produces = "application/json")
     public ResponseEntity deleteChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId) {
-        channelService.deleteChannel(principalId,channelId);
+        boolean resp = channelService.deleteChannel(principalId,channelId);
+        if(resp) {
+            JSONObject response = new JSONObject();
+            response.put("status","success");
+            response.put("message","The channel with channel Id channelId is deleted successfully");
+            return new ResponseEntity(response.toString(), HttpStatus.OK);
+        }
         JSONObject response = new JSONObject();
-        response.put("status","success");
-        response.put("message","The channel with channel Id channelId is deleted successfully");
-        return new ResponseEntity(response.toString(), HttpStatus.OK);
+        response.put("error","Invalid combination of principalId and channelId");
+        return new ResponseEntity(response.toString(),HttpStatus.BAD_REQUEST);
+
     }
     @PostMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
     public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Credentials credentials) {
         ChannelResponse channelResponse = channelService.updateChannel(channelId,principalId,credentials);
-        System.out.println(channelResponse);
         return channelResponse;
     }
     @PostMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
