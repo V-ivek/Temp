@@ -10,9 +10,9 @@ import java.util.List;
 
 public interface ChannelDAL {
 
-    Page<ChannelResponse> getAllFacebookChannelsOfPrincipal(String principalId);
+    List<ChannelResponse> getAllFacebookChannelsOfPrincipal(String principalId);
 
     void delete(String channelId, String principalId);
 
-    ChannelResponse update(String channelId, String principalId, Credentials credentials);
+    boolean update(String channelId, String principalId, Credentials credentials);
 }

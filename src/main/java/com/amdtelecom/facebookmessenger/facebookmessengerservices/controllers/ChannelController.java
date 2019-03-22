@@ -24,8 +24,8 @@ public class ChannelController {
         return channelResponse;
     }
     @GetMapping(value = "/facebook/channel", produces = "application/json")
-    public Page<ChannelResponse> getAllChannelsOfPrincipal(@RequestHeader("principalId") String principalId) {
-        Page<ChannelResponse> channels = channelService.getAllChannelsOfPrincipal(principalId);
+    public List<ChannelResponse> getAllChannelsOfPrincipal(@RequestHeader("principalId") String principalId) {
+        List<ChannelResponse> channels = channelService.getAllChannelsOfPrincipal(principalId);
         System.out.println("This is---" + channels );
         return channels;
     }
@@ -43,11 +43,11 @@ public class ChannelController {
         response.put("message","The channel with channel Id channelId is deleted successfully");
         return new ResponseEntity(response.toString(), HttpStatus.OK);
     }
-    @PutMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
+    @PostMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
     public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Credentials credentials) {
-        System.out.println(credentials);
-        channelService.updateChannel(channelId,principalId,credentials);
-        return null;
+        ChannelResponse channelResponse = channelService.updateChannel(channelId,principalId,credentials);
+        System.out.println(channelResponse);
+        return channelResponse;
     }
     @PostMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
     public ResponseEntity putUser(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Recipient facebookPsid){
@@ -55,8 +55,7 @@ public class ChannelController {
         JSONObject response = new JSONObject();
         response.put("channelId",recipient.getChannelId());
         response.put("facebookPsid",recipient.getFacebookPsid());
-        System.out.println(new ResponseEntity(response,HttpStatus.OK));
-        return new ResponseEntity(response,HttpStatus.OK);
+        return new ResponseEntity(response.toString(),HttpStatus.OK);
     }
 //    @GetMapping(value = "facebook/channel/{channelId}" , produces = 'application/json")')
 //    public List<Recipient> getUsers(@RequestHeader("principalId") String principalId,@PathVariable("channleId") String channelId) {

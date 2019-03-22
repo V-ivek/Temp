@@ -11,4 +11,6 @@ public interface ChannelRepository extends MongoRepository<MessengerServiceChann
 
     ChannelResponse getMessengerServiceChannelByPrincipalIdAndChannelId(String principalId,String channelId);
 
+    void deleteMessengerServiceChannelByChannelIdAndPrincipalId(String channelId,String principalId);
+
 }

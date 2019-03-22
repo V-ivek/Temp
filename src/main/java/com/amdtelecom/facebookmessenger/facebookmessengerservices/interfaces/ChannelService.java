@@ -9,7 +9,7 @@ import java.util.Map;
 public interface ChannelService {
     ChannelResponse createChannel(Channel channel, String principalId);
 
-    Page<ChannelResponse> getAllChannelsOfPrincipal(String principalId);
+    List<ChannelResponse> getAllChannelsOfPrincipal(String principalId);
 
     ChannelResponse getChannel(String principalId,String channelId);
 

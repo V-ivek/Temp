@@ -27,15 +27,15 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public ChannelResponse createChannel(Channel channel, String principalId) {
         String channelId = Utility.generateUuid();
-        MessengerServiceChannel messengerServiceChannel = new MessengerServiceChannel(channel.getChannelName(),channel.getCredentials(),channelId,principalId,new Date(),new Date(),false);
+        MessengerServiceChannel messengerServiceChannel = new MessengerServiceChannel(channel.getChannelName(),channel.getCredentials(),channelId,principalId,new Date(),new Date());
         MessengerServiceChannel channelResponse = channelRepository.save(messengerServiceChannel);
         ChannelResponse response = new ChannelResponse(channelResponse.getChannelName(),channelResponse.getCredentials(),messengerServiceChannel.getChannelId());
         return response;
     }
 
     @Override
-    public Page<ChannelResponse> getAllChannelsOfPrincipal(String principalId) {
-        Page<ChannelResponse> channels = channelDAL.getAllFacebookChannelsOfPrincipal(principalId);
+    public List<ChannelResponse> getAllChannelsOfPrincipal(String principalId) {
+        List<ChannelResponse> channels = channelDAL.getAllFacebookChannelsOfPrincipal(principalId);
         return channels;
     }
     @Override
@@ -45,15 +45,16 @@ public class ChannelServiceImpl implements ChannelService {
     }
     @Override
     public void deleteChannel(String principalId,String channelId){
-        System.out.println("This is" + channelId);
-//        channelRepository.deleteById(channelId);
-        channelDAL.delete(channelId,principalId);
-        System.out.println("This is");
+        channelRepository.deleteMessengerServiceChannelByChannelIdAndPrincipalId(channelId,principalId);
     }
 
     @Override
     public ChannelResponse updateChannel(String channelId,String principalId, Credentials credentials) {
-        channelDAL.update(channelId,principalId,credentials);
+        if(channelDAL.update(channelId,principalId,credentials)) {
+            ChannelResponse channelResponse = channelRepository.getMessengerServiceChannelByPrincipalIdAndChannelId(principalId,channelId);
+            return channelResponse;
+        }
+//        channelDAL.update(channelId,principalId,credentials);
         return null;
     }
     @Override

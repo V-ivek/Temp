@@ -15,7 +15,6 @@ public class MessengerServiceChannel extends Channel {
     private String principalId;
     private Date createdAt;
     private Date updatedAt;
-    private boolean isDeleted;
 
 
     public MessengerServiceChannel(){ }
@@ -24,13 +23,12 @@ public class MessengerServiceChannel extends Channel {
 //        super(channelName, credentials);
 //    }
 
-    public MessengerServiceChannel(String channelName, Credentials credentials, String channelId, String principalId, Date createdAt, Date updatedAt, boolean isDeleted) {
+    public MessengerServiceChannel(String channelName, Credentials credentials, String channelId, String principalId, Date createdAt, Date updatedAt) {
         super(channelName, credentials);
         this.channelId = channelId;
         this.principalId = principalId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.isDeleted = isDeleted;
     }
 
     @Override
@@ -40,7 +38,6 @@ public class MessengerServiceChannel extends Channel {
                 ", principalId='" + principalId + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
-                ", isDeleted=" + isDeleted +
                 '}';
     }
 
@@ -76,11 +73,4 @@ public class MessengerServiceChannel extends Channel {
         this.updatedAt = updatedAt;
     }
 
-    public boolean isDeleted() {
-        return isDeleted;
-    }
-
-    public void setDeleted(boolean deleted) {
-        isDeleted = deleted;
-    }
 }

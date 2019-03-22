@@ -28,15 +28,16 @@ public class ChannelDALImpl implements ChannelDAL {
     MongoTemplate mongoTemplate;
 
     @Override
-    public Page<ChannelResponse> getAllFacebookChannelsOfPrincipal(String principalId) {
-        Pageable pageable = PageRequest.of(1,1);
+    public List<ChannelResponse> getAllFacebookChannelsOfPrincipal(String principalId) {
+//        Pageable pageable = PageRequest.of(1,1);
         Query query = new Query();
         query.addCriteria(Criteria.where("principalId").is(principalId));
         List<ChannelResponse> channels = mongoTemplate.find(query,ChannelResponse.class,"channels");
-        return PageableExecutionUtils.getPage(
-                channels,
-                pageable,
-                () -> mongoTemplate.count(query, ChannelResponse.class));
+        return channels;
+//        return PageableExecutionUtils.getPage(
+//                channels,
+//                pageable,
+//                () -> mongoTemplate.count(query, ChannelResponse.class));
     }
     @Override
     public void delete(String channelId,String principalId) {
@@ -49,7 +50,7 @@ public class ChannelDALImpl implements ChannelDAL {
     }
 
     @Override
-    public ChannelResponse update(String channelId,String principalId, Credentials credentials) {
+    public boolean update(String channelId,String principalId, Credentials credentials) {
         Query query = new Query();
         Update update = new Update();
         if(credentials.getPageAccessToken() !=null) {
@@ -68,7 +69,7 @@ public class ChannelDALImpl implements ChannelDAL {
         query.addCriteria(Criteria.where("channelId").is(channelId));
         UpdateResult updateResult = mongoTemplate.updateFirst(query,update,MessengerServiceChannel.class);
         System.out.println("Update"+updateResult);
-        return null;
+        return (updateResult.getModifiedCount() ==1 ? true : false);
     }
 
 }
