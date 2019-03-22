@@ -1,10 +1,7 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.controllers;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,10 +46,20 @@ public class ChannelController {
     @PutMapping(value = "/facebook/channel/{channelId}", produces = "application/json")
     public  ChannelResponse updateChannel(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Credentials credentials) {
         System.out.println(credentials);
+        channelService.updateChannel(channelId,principalId,credentials);
         return null;
-    } {
-
     }
-//    @PutMapping(value = "facebook/channel/{channelId}" , produces = "application/json")
-//    public ResponseEntity updateChannel()
+    @PostMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
+    public ResponseEntity putUser(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Recipient facebookPsid){
+        Recipient recipient = channelService.putUser(channelId,principalId, facebookPsid.getFacebookPsid());
+        JSONObject response = new JSONObject();
+        response.put("channelId",recipient.getChannelId());
+        response.put("facebookPsid",recipient.getFacebookPsid());
+        System.out.println(new ResponseEntity(response,HttpStatus.OK));
+        return new ResponseEntity(response,HttpStatus.OK);
+    }
+//    @GetMapping(value = "facebook/channel/{channelId}" , produces = 'application/json")')
+//    public List<Recipient> getUsers(@RequestHeader("principalId") String principalId,@PathVariable("channleId") String channelId) {
+//        List<Recipient> recipients = recipientSer
+//    }
 }

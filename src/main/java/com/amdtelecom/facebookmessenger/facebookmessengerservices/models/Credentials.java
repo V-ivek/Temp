@@ -1,10 +1,15 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Required;
+import org.springframework.data.annotation.PersistenceConstructor;
 
 public class Credentials {
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String appId;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String appSecret;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String pageId;
     private String pageAccessToken;
     private String verifyToken;

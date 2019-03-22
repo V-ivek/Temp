@@ -1,9 +1,6 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces;
 
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -19,4 +16,6 @@ public interface ChannelService {
     void deleteChannel(String principalId,String channelId);
 
     ChannelResponse updateChannel(String channelId, String principalId,Credentials credentials);
+
+    Recipient putUser(String channelId, String principalId, String facebookPsid);
 }

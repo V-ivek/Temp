@@ -5,6 +5,8 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel
 //import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.CredentialsBase;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Credentials;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
+import com.mongodb.WriteResult;
+import com.mongodb.client.result.UpdateResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,6 +18,7 @@ import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.data.repository.support.PageableExecutionUtils;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -26,7 +29,7 @@ public class ChannelDALImpl implements ChannelDAL {
 
     @Override
     public Page<ChannelResponse> getAllFacebookChannelsOfPrincipal(String principalId) {
-        Pageable pageable = new PageRequest(2,6 );
+        Pageable pageable = PageRequest.of(1,1);
         Query query = new Query();
         query.addCriteria(Criteria.where("principalId").is(principalId));
         List<ChannelResponse> channels = mongoTemplate.find(query,ChannelResponse.class,"channels");
@@ -37,7 +40,6 @@ public class ChannelDALImpl implements ChannelDAL {
     }
     @Override
     public void delete(String channelId,String principalId) {
-        Pageable pageable = new PageRequest(0,2);
         Query query = new Query();
         query.addCriteria(Criteria.where("channelId").is(channelId)
                             .and("principalId").is(principalId));
@@ -47,9 +49,25 @@ public class ChannelDALImpl implements ChannelDAL {
     }
 
     @Override
-    public ChannelResponse update(String channelId, Credentials credentials) {
+    public ChannelResponse update(String channelId,String principalId, Credentials credentials) {
         Query query = new Query();
-//        query.addCriteria(Criteria.where("channelId").is(cha));
+        Update update = new Update();
+        if(credentials.getPageAccessToken() !=null) {
+            update.set("credentials.pageAccessToken", credentials.getPageAccessToken());
+        }
+        if(credentials.getVerifyToken() !=null) {
+            update.set("credentials.verifyToken", credentials.getVerifyToken());
+        }
+        if(credentials.getCallbackStatusUrl() !=null) {
+            update.set("credentials.callbackStatusUrl", credentials.getCallbackStatusUrl());
+        }
+        if(credentials.getCallbackInboundUrl() !=null) {
+            update.set("credentials.callbackInboundUrl", credentials.getCallbackInboundUrl());
+        }
+        update.set("updatedAt",new Date());
+        query.addCriteria(Criteria.where("channelId").is(channelId));
+        UpdateResult updateResult = mongoTemplate.updateFirst(query,update,MessengerServiceChannel.class);
+        System.out.println("Update"+updateResult);
         return null;
     }
 

@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
-import java.util.List;
 import java.util.Map;
 
 @Document(collection = "principals")
@@ -27,7 +26,9 @@ public class MessengerServicePrincipal {
         this.principalId=principalId;
         this.metadata=metadata;
     }
-    public MessengerServicePrincipal() {}
+
+    public MessengerServicePrincipal() {
+    }
 
     public MessengerServicePrincipal(String principalId, String platformId, Map<String, String> metadata, Date createdAt, Date updatedAt) {
         this.principalId = principalId;
@@ -54,6 +55,14 @@ public class MessengerServicePrincipal {
 
     public void setPrincipalId(String principalId) {
         this.principalId = principalId;
+    }
+
+    public String getPlatformId() {
+        return platformId;
+    }
+
+    public void setPlatformId(String platformId) {
+        this.platformId = platformId;
     }
 
     public Map<String, String> getMetadata() {

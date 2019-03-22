@@ -4,6 +4,7 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.Cha
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.DAL.ChannelDAL;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.ChannelRepository;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.RecipientRepository;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ public class ChannelServiceImpl implements ChannelService {
     ChannelRepository channelRepository;
     @Autowired
     ChannelDAL channelDAL;
+    @Autowired
+    RecipientRepository recipientRepository;
 
     @Override
     public ChannelResponse createChannel(Channel channel, String principalId) {
@@ -50,6 +53,14 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Override
     public ChannelResponse updateChannel(String channelId,String principalId, Credentials credentials) {
+        channelDAL.update(channelId,principalId,credentials);
         return null;
+    }
+    @Override
+    public Recipient putUser(String channelId, String principalId, String facebookPsid) {
+        Recipient recipient = new Recipient(facebookPsid,channelId,principalId);
+        Recipient response = recipientRepository.save(recipient);
+        return response;
+
     }
 }

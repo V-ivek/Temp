@@ -14,5 +14,5 @@ public interface ChannelDAL {
 
     void delete(String channelId, String principalId);
 
-    ChannelResponse update(String channelId, Credentials credentials);
+    ChannelResponse update(String channelId, String principalId, Credentials credentials);
 }

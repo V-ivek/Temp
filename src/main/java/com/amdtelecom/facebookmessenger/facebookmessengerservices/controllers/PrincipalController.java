@@ -29,6 +29,7 @@ public class PrincipalController {
         MessengerServicePrincipal principal = principalService.createPrincipal(platformId, metadata);
         MessengerServicePrincipal response = new MessengerServicePrincipal(principal.getPrincipalId(),metadata);
         String res = Utility.convertBeanToJson(response);
+        System.out.println("came here"+res);
         return new ResponseEntity(res, HttpStatus.OK);
     }
 
