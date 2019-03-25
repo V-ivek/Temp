@@ -59,7 +59,6 @@ public class ChannelController {
     }
     @GetMapping(value = "facebook/{channelId}/recipient" , produces = "application/json")
     public List<Recipient> getUsers(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId) {
-        List<Recipient> recipients = channelService.getAllFacebookPsids(channelId,principalId);
-        return recipients;
+        return channelService.getAllFacebookPsids(channelId,principalId);
     }
 }
