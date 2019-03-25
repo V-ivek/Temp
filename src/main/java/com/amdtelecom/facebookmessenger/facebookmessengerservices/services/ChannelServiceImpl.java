@@ -69,6 +69,13 @@ public class ChannelServiceImpl implements ChannelService {
         return response;
 
     }
+
+    @Override
+    public List<Recipient> getAllFacebookPsids(String channelId, String principalId) {
+        List<Recipient> recipients = recipientRepository.getRecipientsByChannelIdAndPrincipalId(channelId,principalId);
+        return recipients;
+    }
+
     public boolean validateChannelAndPrincipal(String principalId,String channelId) {
         if(channelRepository.getMessengerServiceChannelByPrincipalIdAndChannelId(principalId,channelId) != null) {
             return true;

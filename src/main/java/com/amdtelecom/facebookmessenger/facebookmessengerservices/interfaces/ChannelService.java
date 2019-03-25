@@ -18,4 +18,6 @@ public interface ChannelService {
     ChannelResponse updateChannel(String channelId, String principalId,Channel channel);
 
     Recipient putUser(String channelId, String principalId, String facebookPsid);
+
+    List<Recipient> getAllFacebookPsids(String channelId, String principalId);
 }

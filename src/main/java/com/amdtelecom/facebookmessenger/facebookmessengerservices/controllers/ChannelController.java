@@ -2,15 +2,12 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices.controllers;
 
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.*;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.util.Utility;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -52,7 +49,7 @@ public class ChannelController {
         ChannelResponse channelResponse = channelService.updateChannel(channelId,principalId,channel);
         return channelResponse;
     }
-    @PostMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
+    @PutMapping(value = "/facebook/channel/{channelId}/recipient" , produces = "application/json")
     public ResponseEntity putUser(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId,@RequestBody Recipient facebookPsid){
         Recipient recipient = channelService.putUser(channelId,principalId, facebookPsid.getFacebookPsid());
         JSONObject response = new JSONObject();
@@ -60,8 +57,9 @@ public class ChannelController {
         response.put("facebookPsid",recipient.getFacebookPsid());
         return new ResponseEntity(response.toString(),HttpStatus.OK);
     }
-//    @GetMapping(value = "facebook/channel/{channelId}" , produces = 'application/json")')
-//    public List<Recipient> getUsers(@RequestHeader("principalId") String principalId,@PathVariable("channleId") String channelId) {
-//        List<Recipient> recipients = recipientSer
-//    }
+    @GetMapping(value = "facebook/{channelId}/recipient" , produces = "application/json")
+    public List<Recipient> getUsers(@RequestHeader("principalId") String principalId,@PathVariable("channelId") String channelId) {
+        List<Recipient> recipients = channelService.getAllFacebookPsids(channelId,principalId);
+        return recipients;
+    }
 }
