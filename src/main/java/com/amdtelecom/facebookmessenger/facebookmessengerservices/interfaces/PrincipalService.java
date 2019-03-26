@@ -1,14 +1,19 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces;
 
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.exceptions.InvalidPrincipalException;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
-
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.exceptions.NoItemsFoundException;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessengerServicePrincipal;
 
 public interface PrincipalService {
-    MessengerServicePrincipal createPrincipal(String platformId, Map<String, String> metadata);
-    List<MessengerServicePrincipal> getPrincipals(String platformId);
-    MessengerServicePrincipal getSpecificPrincipal(String principalId,String platformId) throws InvalidPrincipalException;
+	public MessengerServicePrincipal createPrincipal(String platformId, 
+			Map<String, Object> metadata) throws NullPointerException;
+	public List<MessengerServicePrincipal> getPrincipalsForPlatform(String platformId) 
+			throws NullPointerException, NoItemsFoundException;
+	public MessengerServicePrincipal getPrincipalForPlatformAndPrincipal(String platformId, 
+			UUID principalId) throws NullPointerException, NoItemsFoundException;
+	public MessengerServicePrincipal getPrincipalForPlatformAndPrincipal(String platformId, 
+			String principalId) throws NullPointerException, NoItemsFoundException;
 }
