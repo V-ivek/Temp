@@ -1,15 +1,15 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories;
 
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServicePrincipal;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.Query;
-
 import java.util.List;
 
-public interface PrincipalRepository extends MongoRepository<MessengerServicePrincipal,String> {
-    @Query(value="{ 'platformId' : ?0, 'principalId' : ?1}",fields="{principalId : 1, metadata: 1, _id : 0}")
-    public MessengerServicePrincipal getMessengerServicePrincipalByPrincipalId(String platformId,String principalId);
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-    @Query(fields="{principalId : 1, metadata: 1, _id : 0}")
-    public List<MessengerServicePrincipal> getMessengerServicePrincipalsByPlatformId(String platformId);
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessengerServicePrincipal;
+
+@Repository
+public interface PrincipalRepository extends CrudRepository<MessengerServicePrincipal, String>{
+	public List<MessengerServicePrincipal> findByPlatformId(String platformId);
+	public MessengerServicePrincipal findByPlatformIdAndPrincipalId(String platformId, String principalId);
+	public MessengerServicePrincipal findByPrincipalId(String principalId);
 }

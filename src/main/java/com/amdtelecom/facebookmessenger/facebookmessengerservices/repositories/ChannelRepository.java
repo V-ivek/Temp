@@ -1,16 +1,16 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories;
 
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.Channel;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.ChannelResponse;
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.models.MessengerServiceChannel;
-import org.springframework.data.mongodb.repository.MongoRepository;
-
 import java.util.List;
 
-public interface ChannelRepository extends MongoRepository<MessengerServiceChannel,String> {
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-    ChannelResponse getMessengerServiceChannelByPrincipalIdAndChannelId(String principalId,String channelId);
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessengerServiceChannel;
 
-    void deleteMessengerServiceChannelByChannelIdAndPrincipalId(String channelId,String principalId);
 
+@Repository
+public interface ChannelRepository extends CrudRepository<MessengerServiceChannel, String>{
+	public List<MessengerServiceChannel> findByPrincipalId(String principalId);
+	public MessengerServiceChannel findByPrincipalIdAndChannelId(String principalId, String channelId);
+	public boolean existsByPrincipalIdAndChannelId(String principalId, String channelId);
 }
