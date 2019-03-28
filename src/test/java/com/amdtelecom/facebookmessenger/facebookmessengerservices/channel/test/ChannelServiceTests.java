@@ -67,7 +67,7 @@ public class ChannelServiceTests {
 		
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 		assertThat(savedChannel.getChannelId()).isNotNull();
 	}
@@ -76,7 +76,7 @@ public class ChannelServiceTests {
 	public void createChannelFailOnEmptyPrincipalId() throws NullPointerException, NoItemsFoundException, AlreadyPresentException, MissingItemsException{
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(null, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 	}
 	
@@ -94,7 +94,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, null, 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 	}
 	
@@ -114,7 +114,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 		List<MessengerServiceChannel> channelsList= 
 				channelService.getAllChannelsForPrincipal(principalId);
@@ -149,7 +149,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 		MessengerServiceChannel channel = 
 				channelService.getChannelForPrincipal(principalId, savedChannel.getChannelId());
@@ -170,7 +170,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 		MessengerServiceChannel channel = 
 				channelService.getChannelForPrincipal("", savedChannel.getChannelId());
@@ -191,7 +191,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 		MessengerServiceChannel channel = 
 				channelService.getChannelForPrincipal(principalId, "");
@@ -202,7 +202,7 @@ public class ChannelServiceTests {
 			AlreadyPresentException, MissingItemsException {
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(null, "UnitTestChannelName1", 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 	}
 	
@@ -221,7 +221,7 @@ public class ChannelServiceTests {
 
 		MessengerServiceChannel savedChannel = 
 				channelService.createChannel(principalId, null, 
-						"appId1", "72939443jjffd01kds", 1, "asdfgf", "zxcvc", 
+						"appId1", "72939443jjffd01kds", "1", "asdfgf", "zxcvc",
 						"https://routee.amd.com/channel", "https://routee.amd.com/channel");
 	}
 }

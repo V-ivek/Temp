@@ -62,6 +62,7 @@ public class GenericExceptionHandler {
 	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<ErrorResponse> handleGenericExceptions(Exception ex) {
+		System.out.println(ex);
 		return new ResponseEntity<ErrorResponse>(
 				new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage(), "Generic", "failed"),
 				HttpStatus.INTERNAL_SERVER_ERROR);			

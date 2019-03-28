@@ -86,7 +86,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -126,7 +126,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -166,7 +166,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -206,7 +206,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -263,7 +263,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -312,7 +312,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		
@@ -363,7 +363,7 @@ public class ChannelIntegrationTests {
 
 		ChannelCreateRequest channelCreateRequest = 
 				new ChannelCreateRequest(
-						"channelName1", "appId1", "appSecret1", 1, "9829mnsdafnsd",
+						"channelName1", "appId1", "appSecret1", "1", "9829mnsdafnsd",
 						"28438943mffvmmw", "https://routee.amdtelecom.com/checkfb/",
 						"https://routee.amdtelecom.com/checkfb/");
 		

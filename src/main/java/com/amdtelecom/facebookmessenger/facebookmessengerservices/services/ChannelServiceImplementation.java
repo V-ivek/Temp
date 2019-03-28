@@ -37,7 +37,7 @@ public class ChannelServiceImplementation implements ChannelService {
 
 	@Override
 	public MessengerServiceChannel createChannel(String principalId, String channelName,
-			String appId, String appSecret, Integer pageId,	String pageAccessToken, 
+			String appId, String appSecret, String pageId,	String pageAccessToken,
 			String verifyToken, String callbackStatusUrl,
 			String callbackInboundUrl) 
 					throws NullPointerException, NoItemsFoundException, AlreadyPresentException, 

@@ -26,7 +26,7 @@ public class MessengerServiceChannel {
 	private String channelName;
     private String appId;
     private String appSecret;
-    private Integer pageId;
+    private String pageId;
     private String pageAccessToken;
     private String verifyToken;
     private String callbackStatusUrl;
@@ -41,7 +41,7 @@ public class MessengerServiceChannel {
     }
     
 	public MessengerServiceChannel(String principalId, String channelId, String channelName, 
-			String appId, String appSecret, Integer pageId, String pageAccessToken, 
+			String appId, String appSecret, String pageId, String pageAccessToken,
 			String verifyToken, String callbackStatusUrl, String callbackInboundUrl, 
 			Long createdAt, Long updatedAt) {
 		this.principalId = principalId;
@@ -106,11 +106,11 @@ public class MessengerServiceChannel {
 		this.appSecret = appSecret;
 	}
 
-	public Integer getPageId() {
+	public String getPageId() {
 		return pageId;
 	}
 
-	public void setPageId(Integer pageId) {
+	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
 

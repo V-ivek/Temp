@@ -5,7 +5,7 @@ public class ChannelCreateRequest {
 	private String channelName;
 	private String appId;
 	private String appSecret;
-	private Integer pageId;
+	private String pageId;
 	private String pageAccessToken;
 	private String verifyToken;
 	private String callbackStatusUrl;
@@ -16,7 +16,7 @@ public class ChannelCreateRequest {
 	}
 	
 	public ChannelCreateRequest(String channelName,
-			String appId, String appSecret, Integer pageId,	String pageAccessToken, 
+			String appId, String appSecret, String pageId,	String pageAccessToken,
 			String verifyToken, String callbackStatusUrl,
 			String callbackInboundUrl) {
 		this.channelName = channelName;
@@ -53,11 +53,11 @@ public class ChannelCreateRequest {
 		this.appSecret = appSecret;
 	}
 
-	public Integer getPageId() {
+	public String getPageId() {
 		return pageId;
 	}
 
-	public void setPageId(Integer pageId) {
+	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
 

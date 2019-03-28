@@ -2,6 +2,7 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices.controller.he
 
 import java.util.Date;
 
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class UpdateChannelResponse {
@@ -9,7 +10,7 @@ public class UpdateChannelResponse {
 	private String channelName;
     private String appId;
     private String appSecret;
-    private Integer pageId;
+    private String pageId;
     private String pageAccessToken;
     private String verifyToken;
     private String callbackStatusUrl;
@@ -21,7 +22,7 @@ public class UpdateChannelResponse {
     }
 
 	public UpdateChannelResponse(String channelName, String appId, String appSecret, 
-			Integer pageId,	String pageAccessToken, String verifyToken, String callbackStatusUrl, 
+			String pageId,	String pageAccessToken, String verifyToken, String callbackStatusUrl,
 			String callbackInboundUrl,	Date updatedAt) {
 		this.channelName = channelName;
 		this.appId = appId;
@@ -58,11 +59,11 @@ public class UpdateChannelResponse {
 		this.appSecret = appSecret;
 	}
 
-	public Integer getPageId() {
+	public String getPageId() {
 		return pageId;
 	}
 
-	public void setPageId(Integer pageId) {
+	public void setPageId(String pageId) {
 		this.pageId = pageId;
 	}
 
