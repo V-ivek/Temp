@@ -1,19 +1,19 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.controller.helper;
 
-import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessageBody;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.Message;
 
 public class MessageRequest {
     private String channelId;
     private String to;
-    private MessageBody messageBody;
+    private Message message;
 
     public MessageRequest() {
     }
 
-    public MessageRequest(String channelId, String to, MessageBody messageBody) {
+    public MessageRequest(String channelId, String to, Message message) {
         this.channelId = channelId;
         this.to = to;
-        this.messageBody = messageBody;
+        this.message = message;
     }
 
     public String getChannelId() {
@@ -32,12 +32,12 @@ public class MessageRequest {
         this.to = to;
     }
 
-    public MessageBody getMessageBody() {
-        return messageBody;
+    public Message getMessage() {
+        return message;
     }
 
-    public void setMessageBody(MessageBody messageBody) {
-        this.messageBody = messageBody;
+    public void setMessage(Message message) {
+        this.message = message;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class MessageRequest {
         return "MessageRequest{" +
                 "channelId='" + channelId + '\'' +
                 ", to='" + to + '\'' +
-                ", messageBody=" + messageBody +
+                ", messageBody=" + message +
                 '}';
     }
 }
