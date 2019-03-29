@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Document(collection = "fbprincipals")
-public class MessengerServicePrincipal {
+public class    MessengerServicePrincipal {
 	@Id
 	private String id;
     @Indexed(unique = true)

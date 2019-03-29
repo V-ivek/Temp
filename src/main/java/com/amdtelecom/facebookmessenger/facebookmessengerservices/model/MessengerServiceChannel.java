@@ -161,4 +161,23 @@ public class MessengerServiceChannel {
     public void setUpdatedAt(Long updatedAt) {
         this.updatedAt = updatedAt;
     }
+
+	@Override
+	public String toString() {
+		return "MessengerServiceChannel{" +
+				"id='" + id + '\'' +
+				", principalId='" + principalId + '\'' +
+				", channelId='" + channelId + '\'' +
+				", channelName='" + channelName + '\'' +
+				", appId='" + appId + '\'' +
+				", appSecret='" + appSecret + '\'' +
+				", pageId='" + pageId + '\'' +
+				", pageAccessToken='" + pageAccessToken + '\'' +
+				", verifyToken='" + verifyToken + '\'' +
+				", callbackStatusUrl='" + callbackStatusUrl + '\'' +
+				", callbackInboundUrl='" + callbackInboundUrl + '\'' +
+				", createdAt=" + createdAt +
+				", updatedAt=" + updatedAt +
+				'}';
+	}
 }

@@ -1,5 +1,7 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.model;
 
+import org.springframework.data.annotation.PersistenceConstructor;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,14 +21,20 @@ public class Message {
     public Message() {
     }
 
+    @PersistenceConstructor
+    public Message(String text){
+        this.text=text;
+    }
+
     @Override
     public String toString() {
-        return "MessageBody{" +
-                "attachments=" + attachments +
-                ", text='" + text + '\'' +
-                ", buttons=" + buttons +
-                ", quickReplies=" + quickReplies +
-                '}';
+//        return "MessageBody{" +
+//                "attachments=" + attachments +
+//                ", text='" + text + '\'' +
+//                ", buttons=" + buttons +
+//                ", quickReplies=" + quickReplies +
+//                '}';
+        return "\"text\":\""+this.getText()+"\"";
     }
 
     public void setAttachments(Attachment attachments) {
