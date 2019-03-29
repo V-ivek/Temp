@@ -34,7 +34,7 @@ public class Message {
 //                ", buttons=" + buttons +
 //                ", quickReplies=" + quickReplies +
 //                '}';
-        return "\"text\":\""+this.getText()+"\"";
+        return "{\"text\":\""+this.getText()+"\"}";
     }
 
     public void setAttachments(Attachment attachments) {

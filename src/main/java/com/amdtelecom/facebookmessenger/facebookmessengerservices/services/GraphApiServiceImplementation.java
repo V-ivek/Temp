@@ -37,16 +37,19 @@ public class GraphApiServiceImplementation implements GraphApiService {
 
         HttpEntity<MessageRequest> entity = null;
 
-
         Message message = new Message();
         message.setText("Hey there");
-        GraphRecipient recipient = new GraphRecipient("2345081478864905");
+//        GraphRecipient recipient = new GraphRecipient("2345081478864905");
+        Map<String,String> recipient = new HashMap<String, String>();
+        recipient.put("id","2345081478864905");
+        String test = recipient.toString();
+        System.out.println(test);
         UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(curlString)
                 // Add query parameter
                 .queryParam("access_token", "EAAFt8wkZA258BAIbOS11l1AYwsd1O6kZC4bZCe0cLTaMpLSNil9lWwyXDTqQdNcrTCAIpGWPBsGnrXNVJZCZBSIZBQLnAuvVfSedPDKPiC3tFIruRz2luuiI4w9aGn0n4EDhBq7tRZBTZCd6qXcZCYitYUno7t7NA2ye8IAZCvgZAGAe5UxOZC2ZAigavz2ifmrVNZB2AZD")
                 .queryParam("message_type", "MESSAGE_TAG")
-                .queryParam("recipient",recipient)
-                .queryParam("message",message)
+                .queryParam("recipient",test)
+                .queryParam("message","{'text':'hello'}")
                 .queryParam("tag","COMMUNITY_ALERT");
         Map<String, String> uriParams = new HashMap<String, String>();
         uriParams.put("access_token", "EAAFt8wkZA258BAIbOS11l1AYwsd1O6kZC4bZCe0cLTaMpLSNil9lWwyXDTqQdNcrTCAIpGWPBsGnrXNVJZCZBSIZBQLnAuvVfSedPDKPiC3tFIruRz2luuiI4w9aGn0n4EDhBq7tRZBTZCd6qXcZCYitYUno7t7NA2ye8IAZCvgZAGAe5UxOZC2ZAigavz2ifmrVNZB2AZD");

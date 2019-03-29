@@ -5,7 +5,7 @@ public class GraphRecipient {
 
     @Override
     public String toString() {
-        return "\"id\"=\""+this.getId()+"\"";
+        return "{\"id\":\""+this.getId()+"\"}";
     }
 
     public String getId() {
