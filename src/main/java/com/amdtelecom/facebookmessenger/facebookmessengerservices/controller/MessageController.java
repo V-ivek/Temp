@@ -3,15 +3,15 @@ package com.amdtelecom.facebookmessenger.facebookmessengerservices.controller;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.controller.helper.MessageRequest;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.controller.helper.SendMessageResponse;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.MessageService;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessageDetails;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessageDetailsList;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 
 @RestController
 public class MessageController {
@@ -29,6 +29,15 @@ public class MessageController {
 //        InputStream inputStream = process.getInputStream();
 //        System.out.println(inputStream);
         return null;
+    }
+    @GetMapping(path = "facebook/message/{messageId}")
+    public MessageDetails getDetailsOfMessage(@RequestHeader String principalId,@PathVariable String messageId){
+        return messageService.getMessageDetails(messageId);
+    }
+    @GetMapping(path = "facebook/message/{channelId}/{psid}")
+    public List<MessageDetailsList> getAllMessages(@RequestHeader String principalId, @PathVariable String channelId, @PathVariable String psid) {
+        return messageService.getAllMessages(channelId,psid);
+
     }
 
 }

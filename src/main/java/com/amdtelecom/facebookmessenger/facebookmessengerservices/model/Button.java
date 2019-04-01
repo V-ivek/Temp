@@ -1,39 +1,54 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class Button {
-    private String buttonType;
-    private String buttonValue;
-    private String buttonAction;
-    public String getButtonType() {
-        return buttonType;
-    }
-    public void setButtonType(String buttonType) {
-        this.buttonType = buttonType;
-    }
-    public String getButtonValue() {
-        return buttonValue;
-    }
-    public void setButtonValue(String buttonValue) {
-        this.buttonValue = buttonValue;
-    }
-    public String getButtonAction() {
-        return buttonAction;
-    }
-    public void setButtonAction(String buttonAction) {
-        this.buttonAction = buttonAction;
-    }
-    public Button(String buttonType, String buttonValue, String buttonAction) {
-        super();
-        this.buttonType = buttonType;
-        this.buttonValue = buttonValue;
-        this.buttonAction = buttonAction;
-    }
+    private String type;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private String title;
+    private String url;
+
     public Button() {
-        super();
     }
+
     @Override
     public String toString() {
-        return "Button [buttonType=" + buttonType + ", buttonValue=" + buttonValue + ", buttonAction=" + buttonAction
-                + "]";
+        return "Button{" +
+                "type='" + type + '\'' +
+                ", title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+
+
+    public Button(String type, String title, String url, String fallback_url) {
+        this.type = type;
+        this.title = title;
+        this.url = url;
     }
 }

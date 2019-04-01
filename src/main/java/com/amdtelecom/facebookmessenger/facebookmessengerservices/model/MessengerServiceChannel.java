@@ -17,7 +17,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class MessengerServiceChannel {
 	
 	@Id
-	public String id;
+	private String id;
 	@Indexed(direction=IndexDirection.ASCENDING)
 	private String principalId;
 	@Indexed(direction=IndexDirection.ASCENDING)

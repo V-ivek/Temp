@@ -1,44 +1,34 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.data.annotation.PersistenceConstructor;
 
 import java.util.List;
 import java.util.Map;
 
 public class Message {
-    private Attachment attachments;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private Attachment attachment;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String text;
-    private List<Button> buttons;
-    private List<QuickReply> quickReplies;
-
-    public Message(Attachment attachments, String text, List<Button> buttons, List<QuickReply> quickReplies) {
-        this.attachments = attachments;
-        this.text = text;
-        this.buttons = buttons;
-        this.quickReplies = quickReplies;
-    }
-
-    public Message() {
-    }
-
-    @PersistenceConstructor
-    public Message(String text){
-        this.text=text;
-    }
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private List<QuickReply> quick_replies;
 
     @Override
     public String toString() {
-//        return "MessageBody{" +
-//                "attachments=" + attachments +
-//                ", text='" + text + '\'' +
-//                ", buttons=" + buttons +
-//                ", quickReplies=" + quickReplies +
-//                '}';
-        return "{\"text\":\""+this.getText()+"\"}";
+        return "Message{" +
+                "attachment=" + attachment +
+                ", text='" + text + '\'' +
+                ", quick_replies=" + quick_replies +
+                '}';
     }
 
-    public void setAttachments(Attachment attachments) {
-        this.attachments = attachments;
+    public Attachment getAttachment() {
+        return attachment;
+    }
+
+    public void setAttachment(Attachment attachment) {
+        this.attachment = attachment;
     }
 
     public String getText() {
@@ -49,19 +39,20 @@ public class Message {
         this.text = text;
     }
 
-    public List<Button> getButtons() {
-        return buttons;
+    public List<QuickReply> getQuick_replies() {
+        return quick_replies;
     }
 
-    public void setButtons(List<Button> buttons) {
-        this.buttons = buttons;
+    public void setQuick_replies(List<QuickReply> quick_replies) {
+        this.quick_replies = quick_replies;
     }
 
-    public List<QuickReply> getQuickReplies() {
-        return quickReplies;
+    public Message() {
     }
 
-    public void setQuickReplies(List<QuickReply> quickReplies) {
-        this.quickReplies = quickReplies;
+    public Message(Attachment attachment, String text, List<QuickReply> quick_replies) {
+        this.attachment = attachment;
+        this.text = text;
+        this.quick_replies = quick_replies;
     }
 }

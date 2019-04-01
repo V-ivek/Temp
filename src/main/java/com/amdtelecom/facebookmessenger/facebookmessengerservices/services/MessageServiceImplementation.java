@@ -4,7 +4,10 @@ import com.amdtelecom.facebookmessenger.facebookmessengerservices.controller.hel
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.ChannelService;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.GraphApiService;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.interfaces.MessageService;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessageDetails;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessageDetailsList;
 import com.amdtelecom.facebookmessenger.facebookmessengerservices.model.MessengerServiceChannel;
+import com.amdtelecom.facebookmessenger.facebookmessengerservices.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
@@ -12,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.File;
 import java.io.InputStream;
+import java.util.List;
 
 @Service
 public class MessageServiceImplementation implements MessageService {
@@ -20,6 +24,9 @@ public class MessageServiceImplementation implements MessageService {
 
     @Autowired
     GraphApiService graphApiService;
+
+    @Autowired
+    MessageRepository messageRepository;
 
     private static String curlString = "curl -i -X POST https://graph.facebook.com/v3.2/me/messages?";
 
@@ -38,4 +45,15 @@ public class MessageServiceImplementation implements MessageService {
 //        InputStream inputStream = process.getInputStream();
 
     }
+
+    @Override
+    public MessageDetails getMessageDetails(String messageId) {
+        return messageRepository.getMessageDetailsByMessageId(messageId);
+    }
+
+    @Override
+    public List<MessageDetailsList> getAllMessages(String channelId, String to) {
+        return messageRepository.getAllByChannelIdAndAndTo(channelId,to);
+    }
+
 }

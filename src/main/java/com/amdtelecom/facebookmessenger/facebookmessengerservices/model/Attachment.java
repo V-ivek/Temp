@@ -1,14 +1,23 @@
 package com.amdtelecom.facebookmessenger.facebookmessengerservices.model;
 
 public class Attachment {
-    private String attachmentType;
-    private String mediaUrl;
-    private String action;
+    private String type;
+    private Payload payload;
 
-    public Attachment(String attachmentType, String mediaUrl, String action) {
-        this.attachmentType = attachmentType;
-        this.mediaUrl = mediaUrl;
-        this.action = action;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Payload getPayload() {
+        return payload;
+    }
+
+    public void setPayload(Payload payload) {
+        this.payload = payload;
     }
 
     public Attachment() {
@@ -17,33 +26,13 @@ public class Attachment {
     @Override
     public String toString() {
         return "Attachment{" +
-                "attachmentType='" + attachmentType + '\'' +
-                ", mediaUrl='" + mediaUrl + '\'' +
-                ", action='" + action + '\'' +
+                "type='" + type + '\'' +
+                ", payload=" + payload +
                 '}';
     }
 
-    public String getAttachmentType() {
-        return attachmentType;
-    }
-
-    public void setAttachmentType(String attachmentType) {
-        this.attachmentType = attachmentType;
-    }
-
-    public String getMediaUrl() {
-        return mediaUrl;
-    }
-
-    public void setMediaUrl(String mediaUrl) {
-        this.mediaUrl = mediaUrl;
-    }
-
-    public String getAction() {
-        return action;
-    }
-
-    public void setAction(String action) {
-        this.action = action;
+    public Attachment(String type, Payload payload) {
+        this.type = type;
+        this.payload = payload;
     }
 }

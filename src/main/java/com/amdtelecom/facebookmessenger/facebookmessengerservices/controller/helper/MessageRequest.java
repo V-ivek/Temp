@@ -6,15 +6,7 @@ public class MessageRequest {
     private String channelId;
     private String to;
     private Message message;
-
-    public MessageRequest() {
-    }
-
-    public MessageRequest(String channelId, String to, Message message) {
-        this.channelId = channelId;
-        this.to = to;
-        this.message = message;
-    }
+    private String tag;
 
     public String getChannelId() {
         return channelId;
@@ -40,12 +32,31 @@ public class MessageRequest {
         this.message = message;
     }
 
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
     @Override
     public String toString() {
         return "MessageRequest{" +
                 "channelId='" + channelId + '\'' +
                 ", to='" + to + '\'' +
-                ", messageBody=" + message +
+                ", message=" + message +
+                ", tag='" + tag + '\'' +
                 '}';
+    }
+
+    public MessageRequest() {
+    }
+
+    public MessageRequest(String channelId, String to, Message message, String tag) {
+        this.channelId = channelId;
+        this.to = to;
+        this.message = message;
+        this.tag = tag;
     }
 }

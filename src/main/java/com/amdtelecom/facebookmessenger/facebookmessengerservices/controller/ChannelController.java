@@ -199,31 +199,31 @@ public class ChannelController {
 				HttpStatus.OK);
 	}
 
-//	@GetMapping(path="/channel/{channelId}/recipient")
-//	public ResponseEntity<RecipientListResponse> getAllRecipientsForChannel(
-//			@RequestHeader String principalId, @PathVariable String channelId)
-//			throws GenericException  {
-//
-//		List<Recipient> recipientList = null;
-//		try {
-//			recipientList = recipientService.getAllRecipientsForChannel(principalId, channelId);
-//		} catch (NullPointerException ex) {
-//			throw new GenericException(ERROR_CODE.INCORRECT_FORMAT, ex.getMessage());
-//		} catch (NoItemsFoundException ex) {
-//			throw new GenericException(ERROR_CODE.NOT_FOUND,
-//					Arrays.toString(ex.getItems())+" "+ex.getMessage());
-//		}
-//		List<PushNotificationRecipientListResponse.Token> list =
-//				new ArrayList<PushNotificationRecipientListResponse.Token>();
-//		recipientList.forEach(recipient -> {
-//			list.add(new PushNotificationRecipientListResponse.Token(
-//					recipient.getDeviceToken(), new Date(recipient.getUpdatedAt()))
-//			);
-//		});
-//
-//		PushNotificationRecipientListResponse toReturn =
-//				new PushNotificationRecipientListResponse(list, channelId);
-//		return new ResponseEntity<PushNotificationRecipientListResponse>(
-//				toReturn, HttpStatus.OK);
-//	}
+	@GetMapping(path="facebook/channel/{channelId}/recipient")
+	public ResponseEntity<RecipientListResponse> getAllRecipientsForChannel(
+			@RequestHeader String principalId, @PathVariable String channelId)
+			throws GenericException  {
+
+		List<Recipient> recipientList = null;
+		try {
+			recipientList = recipientService.getAllRecipientsForChannel(principalId, channelId);
+		} catch (NullPointerException ex) {
+			throw new GenericException(ERROR_CODE.INCORRECT_FORMAT, ex.getMessage(),"Bad request");
+		} catch (NoItemsFoundException ex) {
+			throw new GenericException(ERROR_CODE.NOT_FOUND,"User doesn't exist",
+					Arrays.toString(ex.getItems())+" "+ex.getMessage());
+		}
+		List<RecipientListResponse.Token> list =
+				new ArrayList<RecipientListResponse.Token>();
+		recipientList.forEach(recipient -> {
+			list.add(new RecipientListResponse.Token(
+					recipient.getFacebookPsid(), new Date(recipient.getUpdatedAt()))
+			);
+		});
+
+		RecipientListResponse toReturn =
+				new RecipientListResponse(list, channelId);
+		return new ResponseEntity<RecipientListResponse>(
+				toReturn, HttpStatus.OK);
+	}
 }
