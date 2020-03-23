@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Stock {
 
     @Field(name="Date")
-    private String Date;
+    private String date;
 
     @Field(name="Open Price")
     private Float openPrice;
@@ -47,36 +47,19 @@ public class Stock {
     private double totalTurnover;
 
     public String getDate() {
-        return Date;
+        return date;
     }
 
     public void setDate(String date) {
-        Date = date;
+        this.date = date;
     }
 
     public Float getOpenPrice() {
         return openPrice;
     }
 
-    public void setOpenPrice(float openPrice) {
+    public void setOpenPrice(Float openPrice) {
         this.openPrice = openPrice;
-    }
-
-    @PersistenceConstructor
-    public Stock(String date, Float openPrice, Float highPrice, Float lowPrice, Float closePrice, Float wap, Float deliverableQuantity, Float spreadHighLow, Float spreadCloseOpen, Float deliToTraded, Float noOfTrades, Float noOfShares, Double totalTurnover) {
-        Date = date;
-        this.openPrice = openPrice;
-        this.highPrice = highPrice;
-        this.lowPrice = lowPrice;
-        this.closePrice = closePrice;
-        this.wap = wap;
-        this.deliverableQuantity = deliverableQuantity;
-        this.spreadHighLow = spreadHighLow;
-        this.spreadCloseOpen = spreadCloseOpen;
-        this.deliToTraded = deliToTraded;
-        this.noOfTrades = noOfTrades;
-        this.noOfShares = noOfShares;
-        this.totalTurnover = totalTurnover;
     }
 
     public Float getHighPrice() {
@@ -91,8 +74,8 @@ public class Stock {
         return lowPrice;
     }
 
-    public Float setLowPrice(Float lowPrice) {
-        return this.lowPrice = lowPrice;
+    public void setLowPrice(Float lowPrice) {
+        this.lowPrice = lowPrice;
     }
 
     public Float getClosePrice() {
@@ -159,11 +142,132 @@ public class Stock {
         this.noOfShares = noOfShares;
     }
 
-    public Double getTotalTurnover() {
+    public double getTotalTurnover() {
         return totalTurnover;
     }
 
-    public void setTotalTurnover(Double totalTurnover) {
+    public void setTotalTurnover(double totalTurnover) {
         this.totalTurnover = totalTurnover;
     }
+
+    //    public String getDate() {
+//        return Date;
+//    }
+//
+//    public void setDate(String date) {
+//        Date = date;
+//    }
+//
+//    public Float getOpenPrice() {
+//        return openPrice;
+//    }
+//
+//    public void setOpenPrice(float openPrice) {
+//        this.openPrice = openPrice;
+//    }
+
+//    @PersistenceConstructor
+//    public Stock(String date, Float openPrice, Float highPrice, Float lowPrice, Float closePrice, Float wap, Float deliverableQuantity, Float spreadHighLow, Float spreadCloseOpen, Float deliToTraded, Float noOfTrades, Float noOfShares, Double totalTurnover) {
+//        Date = date;
+//        this.openPrice = openPrice;
+//        this.highPrice = highPrice;
+//        this.lowPrice = lowPrice;
+//        this.closePrice = closePrice;
+//        this.wap = wap;
+//        this.deliverableQuantity = deliverableQuantity;
+//        this.spreadHighLow = spreadHighLow;
+//        this.spreadCloseOpen = spreadCloseOpen;
+//        this.deliToTraded = deliToTraded;
+//        this.noOfTrades = noOfTrades;
+//        this.noOfShares = noOfShares;
+//        this.totalTurnover = totalTurnover;
+//    }
+//
+//    public Float getHighPrice() {
+//        return highPrice;
+//    }
+//
+//    public void setHighPrice(Float highPrice) {
+//        this.highPrice = highPrice;
+//    }
+//
+//    public Float getLowPrice() {
+//        return lowPrice;
+//    }
+//
+//    public Float setLowPrice(Float lowPrice) {
+//        return this.lowPrice = lowPrice;
+//    }
+//
+//    public Float getClosePrice() {
+//        return closePrice;
+//    }
+//
+//    public void setClosePrice(Float closePrice) {
+//        this.closePrice = closePrice;
+//    }
+//
+//    public Float getWap() {
+//        return wap;
+//    }
+//
+//    public void setWap(Float wap) {
+//        this.wap = wap;
+//    }
+//
+//    public Float getDeliverableQuantity() {
+//        return deliverableQuantity;
+//    }
+//
+//    public void setDeliverableQuantity(Float deliverableQuantity) {
+//        this.deliverableQuantity = deliverableQuantity;
+//    }
+//
+//    public Float getSpreadHighLow() {
+//        return spreadHighLow;
+//    }
+//
+//    public void setSpreadHighLow(Float spreadHighLow) {
+//        this.spreadHighLow = spreadHighLow;
+//    }
+//
+//    public Float getSpreadCloseOpen() {
+//        return spreadCloseOpen;
+//    }
+//
+//    public void setSpreadCloseOpen(Float spreadCloseOpen) {
+//        this.spreadCloseOpen = spreadCloseOpen;
+//    }
+//
+//    public Float getDeliToTraded() {
+//        return deliToTraded;
+//    }
+//
+//    public void setDeliToTraded(Float deliToTraded) {
+//        this.deliToTraded = deliToTraded;
+//    }
+//
+//    public Float getNoOfTrades() {
+//        return noOfTrades;
+//    }
+//
+//    public void setNoOfTrades(Float noOfTrades) {
+//        this.noOfTrades = noOfTrades;
+//    }
+//
+//    public Float getNoOfShares() {
+//        return noOfShares;
+//    }
+//
+//    public void setNoOfShares(Float noOfShares) {
+//        this.noOfShares = noOfShares;
+//    }
+//
+//    public Double getTotalTurnover() {
+//        return totalTurnover;
+//    }
+//
+//    public void setTotalTurnover(Double totalTurnover) {
+//        this.totalTurnover = totalTurnover;
+//    }
 }
