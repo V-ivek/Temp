@@ -6,6 +6,8 @@ import com.mphase.stock.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockServiceImpl implements StockService {
     @Autowired
@@ -15,8 +17,8 @@ public class StockServiceImpl implements StockService {
     }
 
     @Override
-    public Stock findAllStocks() {
-        System.out.println(stockRepository.findByOpenPrice(new Float(100.15)));
-        return stockRepository.findByOpenPrice(new Float(100.15));
+    public List<Stock> findAllStocks() {
+        System.out.println(stockRepository.findAll());
+        return stockRepository.findAll();
     }
 }

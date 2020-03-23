@@ -4,9 +4,10 @@ import org.springframework.data.annotation.PersistenceConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-@Document(collection = "Stock")
+@Document(collection = "stock")
 public class Stock {
 
+    @Field(name="Date")
     private String Date;
 
     @Field(name="Open Price")

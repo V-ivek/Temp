@@ -14,8 +14,7 @@ public class StockController {
     private StockService stockService;
 
     @GetMapping("/stock")
-    public Stock getAllStocks() {
-
+    public List<Stock> getAllStocks() {
         return stockService.findAllStocks();
     }
 }

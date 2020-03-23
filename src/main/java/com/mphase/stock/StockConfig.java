@@ -13,6 +13,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.SimpleMongoDbFactory;
+import org.springframework.data.mongodb.core.convert.DbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
 import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
@@ -24,30 +26,43 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages="com.mphase.stock.repository")
 public class StockConfig {
 
+    @Autowired private MongoDbFactory mongoDbFactory;
+
+    @Autowired private MongoMappingContext mongoMappingContext;
+
+    @Bean
+    public MappingMongoConverter mappingMongoConverter() {
+
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDbFactory);
+        MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, mongoMappingContext);
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+
+        return converter;
+    }
 
     @Bean
     public StockService stockService() {
         return new StockServiceImpl();
     }
 
-    @Bean
-    public MongoDbFactory mongoDbFactory() throws Exception {
-        return new SimpleMongoDbFactory(new MongoClient(), "mphase");
-    }
-
-    @Bean
-    public MongoTemplate mongoTemplate() throws Exception {
-
-        //remove _class
-        MappingMongoConverter converter =
-                new MappingMongoConverter(mongoDbFactory(), new MongoMappingContext());
-        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
-
-        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
-
-        return mongoTemplate;
-
-    }
+//    @Bean
+//    public MongoDbFactory mongoDbFactory() throws Exception {
+//        return new SimpleMongoDbFactory(new MongoClient(), "mphase");
+//    }
+//
+//    @Bean
+//    public MongoTemplate mongoTemplate() throws Exception {
+//
+//        //remove _class
+//        MappingMongoConverter converter =
+//                new MappingMongoConverter(mongoDbFactory(), new MongoMappingContext());
+//        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+//
+//        MongoTemplate mongoTemplate = new MongoTemplate(mongoDbFactory(), converter);
+//
+//        return mongoTemplate;
+//
+//    }
 
 
 }
